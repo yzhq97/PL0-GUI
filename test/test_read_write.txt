@@ -1,0 +1,29 @@
+const z=10;
+var a, b;
+procedure first;
+	var a,b;
+	procedure second;
+		var a,b;
+			begin
+				write(z,a,b);
+				a:=5;
+				b:=6;
+				write(a,b);
+			end;
+	begin
+		write(z,a,b);
+		a:=3;
+		b:=4;
+		write(a,b);
+	end;	
+begin
+	a:=1;
+	b:=2;
+	write(a,b);
+	call first;
+	write(z,a,b);
+	call second;
+	write(z,a,b);	
+	call first;
+	write(z,a,b);
+end.

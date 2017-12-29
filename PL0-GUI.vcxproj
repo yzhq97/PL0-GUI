@@ -193,8 +193,8 @@
   <ItemGroup>
     <ClCompile Include="interpreter.cpp" />
     <ClCompile Include="util.cpp" />
-    <ClCompile Include="lex.cpp" />
-    <ClCompile Include="parser.cpp" />
+    <ClCompile Include="lexical_analyzer.cpp" />
+    <ClCompile Include="compiler.cpp" />
     <ClCompile Include="PL0-GUI.cpp" />
     <ClCompile Include="PL0-GUIDlg.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -11,12 +11,12 @@
 #define SYMBOL_TABLE_SIZE 1024
 #define CODE_SIZE 1024
 #define STACK_SIZE 256
-#define LEX_LIST_LENGTH 1024
+#define LEX_LIST_SIZE 1024
 
 #define IDENTIFIER_LENGTH 20
 #define NUM_LENGTH 8
-#define MAX_ADDR 1024
-#define MAX_LEXI_LEVELS 3
+#define MAX_ADDRESS 1024
+#define MAX_LEXICAL_LEVEL 3
 
 //词法分析数据结构
 typedef enum {
@@ -39,7 +39,7 @@ typedef struct {
 	char name[IDENTIFIER_LENGTH];
 } lexelem;
 
-extern lexelem lex_list[LEX_LIST_LENGTH];
+extern lexelem lex_list[LEX_LIST_SIZE];
 extern int lex_length;
 
 //符号表数据结构
@@ -90,7 +90,7 @@ extern int stack[STACK_SIZE];
 
 //主要的函数
 void lex(FILE * ifp);
-void parse();
+void compile();
 void interpret(FILE * ifp);
 
 #endif

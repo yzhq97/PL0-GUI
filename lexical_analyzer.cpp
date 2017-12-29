@@ -3,7 +3,7 @@
 #include "PL0-GUI.h"
 #include "PL0-GUIDlg.h"
 
-lexelem lex_list[LEX_LIST_LENGTH];
+lexelem lex_list[LEX_LIST_SIZE];
 int lex_length = 0;
 
 int lex_ind;

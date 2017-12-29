@@ -39,7 +39,7 @@ void interpret(FILE * ifp) {
 
 		//Ö´ÐÐÖ¸Áî
 		ret = execute_cycle(instru, &SP, &BP, &PC, ifp);
-		if (ret != 0) break;
+		if (ret != 0) BP = 0;
 
 		//Êä³öÕ»Ö¡
 		tmp = L"";
@@ -98,8 +98,7 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 			stack[*sp] = instru->a;
 			break;
 		case opr_op: //OPR function
-			if (OPR(sp, bp, pc, instru) != 0)
-				return -1;
+			return OPR(sp, bp, pc, instru);
 			break;
 		case lod_op: //LOD
 			*sp = *sp + 1;
@@ -165,67 +164,66 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 }
 
 int OPR(int *sp, int* bp, int *pc, aop * instru) {
-
 	switch (instru->a) {
-	case ret_op:
-		*sp = *bp - 1;
-		*pc = stack[*sp + 4];
-		*bp = stack[*sp + 3];
-		break;
-	case neg_op:
-		stack[*sp] = -stack[*sp];
-		break;
-	case add_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] + stack[*sp + 1];
-		break;
-	case sub_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] - stack[*sp + 1];
-		break;
-	case mul_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] * stack[*sp + 1];
-		break;
-	case div_op:
-		*sp = *sp - 1;
-		if (stack[*sp + 1] == 0) {
-			AppendTextToEditCtrl(editOutput, L"ERROR: Zero division error!\r\n");
-			return -1;
-		}
-		stack[*sp] = stack[*sp] / stack[*sp + 1];
-		break;
-	case odd_op:
-		stack[*sp] = stack[*sp] % 2;
-		break;
-	case mod_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] % stack[*sp + 1];
-		break;
-	case eql_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] == stack[*sp + 1];
-		break;
-	case neq_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] != stack[*sp + 1];
-		break;
-	case lss_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] < stack[*sp + 1];
-		break;
-	case leq_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] <= stack[*sp + 1];
-		break;
-	case gtr_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] > stack[*sp + 1];
-		break;
-	case geq_op:
-		*sp = *sp - 1;
-		stack[*sp] = stack[*sp] >= stack[*sp + 1];
-		break;
+		case ret_op:
+			*sp = *bp - 1;
+			*pc = stack[*sp + 4];
+			*bp = stack[*sp + 3];
+			break;
+		case neg_op:
+			stack[*sp] = -stack[*sp];
+			break;
+		case add_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] + stack[*sp + 1];
+			break;
+		case sub_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] - stack[*sp + 1];
+			break;
+		case mul_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] * stack[*sp + 1];
+			break;
+		case div_op:
+			*sp = *sp - 1;
+			if (stack[*sp + 1] == 0) {
+				AppendTextToEditCtrl(editOutput, L"ERROR: Zero division error!\r\n");
+				return -1;
+			}
+			stack[*sp] = stack[*sp] / stack[*sp + 1];
+			break;
+		case odd_op:
+			stack[*sp] = stack[*sp] % 2;
+			break;
+		case mod_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] % stack[*sp + 1];
+			break;
+		case eql_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] == stack[*sp + 1];
+			break;
+		case neq_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] != stack[*sp + 1];
+			break;
+		case lss_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] < stack[*sp + 1];
+			break;
+		case leq_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] <= stack[*sp + 1];
+			break;
+		case gtr_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] > stack[*sp + 1];
+			break;
+		case geq_op:
+			*sp = *sp - 1;
+			stack[*sp] = stack[*sp] >= stack[*sp + 1];
+			break;
 	}
 	return 0;
 }
