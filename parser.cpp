@@ -552,7 +552,7 @@ int position(char * ident, int * ptx, int lev) {
 void error(int errcase) {
 	errcnt++;
 	CString errstr;
-	errstr.Format(L"Error %d at lex %d:\r\n", errcase, lx);
+	errstr.Format(L"Error %d at lex %d:\r\n", errcase, lx-1);
 	AppendTextToEditCtrl(editError, errstr);
 	switch (errcase) {
 	case 1:
