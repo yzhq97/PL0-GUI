@@ -89,9 +89,6 @@ extern int errcnt;
 extern int stack[STACK_SIZE];
 
 //主要的函数
-void print_error(char * str);
-void print_output(char * str);
-
 void lex(FILE * ifp);
 void parse();
 void interpret(FILE * ifp);

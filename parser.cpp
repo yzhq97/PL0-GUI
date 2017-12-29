@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "pl0.h"
+#include "PL0-GUI.h"
+#include "PL0-GUIDlg.h"
 
 //递归下降函数
 //lev: 层次
@@ -482,7 +484,7 @@ void identifier(int lev, int * ptx) {
 
 void emit(pcode_t op, int l, int a) {
 	if (cx > CODE_SIZE)
-		print_error("Program too long!");
+		AppendTextToEditCtrl(editError, L"Program too long!");
 	else {
 		code[cx].op = op;
 		code[cx].l = l;
@@ -549,121 +551,96 @@ int position(char * ident, int * ptx, int lev) {
 //错误处理
 void error(int errcase) {
 	errcnt++;
+	CString errstr;
+	errstr.Format(L"Error %d at lex %d:\r\n", errcase, lx);
+	AppendTextToEditCtrl(editError, errstr);
 	switch (errcase) {
 	case 1:
-		print_error("Error 1: ");
-		print_error("Use = instead of :=.");
+		AppendTextToEditCtrl(editError, L"Use = instead of :=\r\n");
 		break;
 	case 2:
-		print_error("Error 2: ");
-		print_error("= must be followed by a number.");
+		AppendTextToEditCtrl(editError, L"= must be followed by a number\r\n");
 		break;
 	case 3:
-		print_error("Error 3: ");
-		print_error("ident must be followed by =.");
+		AppendTextToEditCtrl(editError, L"ident must be followed by =\r\n");
 		break;
 	case 4:
-		print_error("Error 4: ");
-		print_error("const, var, procedure must be followed by identifier.");
+		AppendTextToEditCtrl(editError, L"const, var, procedure must be followed by identifier\r\n");
 		break;
 	case 5:
-		print_error("Error 5: ");
-		print_error("Semicolon or comma missing.");
+		AppendTextToEditCtrl(editError, L"Semicolon or comma missing\r\n");
 		break;
 	case 6:
-		print_error("Error 6: ");
-		print_error("Incorrect symbol after procedure declaration.");
+		AppendTextToEditCtrl(editError, L"Incorrect symbol after procedure declaration\r\n");
 		break;
 	case 7:
-		print_error("Error 7: ");
-		print_error("Statement expected");
+		AppendTextToEditCtrl(editError, L"Statement expected");
 		break;
 	case 8:
-		print_error("Error 8: ");
-		print_error("Incorrect symbol after statement part in block.");
+		AppendTextToEditCtrl(editError, L"Incorrect symbol after statement part in block\r\n");
 		break;
 	case 9:
-		print_error("Error 9: ");
-		print_error("Period expected.");
+		AppendTextToEditCtrl(editError, L"Period expected\r\n");
 		break;
 	case 10:
-		print_error("Error 10: ");
-		print_error("Semicolon between statements missing.");
+		AppendTextToEditCtrl(editError, L"Semicolon between statements missing\r\n");
 		break;
 	case 11:
-		print_error("Error 11: ");
-		print_error("Undeclared identifier.");
+		AppendTextToEditCtrl(editError, L"Undeclared identifier\r\n");
 		break;
 	case 12:
-		print_error("Error 12: ");
-		print_error("Assignment to constant or procedure is not allowed.");
+		AppendTextToEditCtrl(editError, L"Assignment to constant or procedure is not allowed\r\n");
 		break;
 	case 13:
-		print_error("Error 13: ");
-		print_error("Assignment operator expected.");
+		AppendTextToEditCtrl(editError, L"Assignment operator expected\r\n");
 		break;
 	case 14:
-		print_error("Error 14: ");
-		print_error("call must be followed by an identifier");
+		AppendTextToEditCtrl(editError, L"call must be followed by an identifier");
 		break;
 	case 15:
-		print_error("Error 15: ");
-		print_error("Call of a constant or variable is meaningless.");
+		AppendTextToEditCtrl(editError, L"Call of a constant or variable is meaningless\r\n");
 		break;
 	case 16:
-		print_error("Error 16: ");
-		print_error("then expected");
+		AppendTextToEditCtrl(editError, L"then expected");
 		break;
 	case 17:
-		print_error("Error 17: ");
-		print_error("Semicolon or } expected");
+		AppendTextToEditCtrl(editError, L"Semicolon or } expected");
 		break;
 	case 18:
-		print_error("Error 18: ");
-		print_error("do expected");
+		AppendTextToEditCtrl(editError, L"do expected");
 		break;
 	case 19:
-		print_error("Error 19: ");
-		print_error("Incorrect symbol following statement.");
+		AppendTextToEditCtrl(editError, L"Incorrect symbol following statement\r\n");
 		break;
 	case 20:
-		print_error("Error 20: ");
-		print_error("Relational operator expected.");
+		AppendTextToEditCtrl(editError, L"Relational operator expected\r\n");
 		break;
 	case 21:
-		print_error("Error 21: ");
-		print_error("Expression must not contain a procedure identifier.");
+		AppendTextToEditCtrl(editError, L"Expression must not contain a procedure identifier\r\n");
 		break;
 	case 22:
-		print_error("Error 22: ");
-		print_error("Right parenthesis missing.");
+		AppendTextToEditCtrl(editError, L"Right parenthesis missing\r\n");
 		break;
 	case 23:
-		print_error("Error 23: ");
-		print_error("The preceding factor cannot begin with this symbol.");
+		AppendTextToEditCtrl(editError, L"The preceding factor cannot begin with this symbol\r\n");
 		break;
 	case 24:
-		print_error("Error 24: ");
-		print_error("An expression cannot begin with this symbol.");
+		AppendTextToEditCtrl(editError, L"An expression cannot begin with this symbol\r\n");
 		break;
 	case 25:
-		print_error("Error 25: ");
-		print_error("This number is too large.");
+		AppendTextToEditCtrl(editError, L"This number is too large\r\n");
 		break;
 	case 26:
-		print_error("Error: 26 ");
-		print_error("Level is larger than the maximum allowed lexicographical levels!");
+		AppendTextToEditCtrl(editError, L"Level is larger than the maximum allowed lexicographical levels\r\n");
 		break;
 	case 27:
-		print_error("Error: 27 ");
-		print_error("Expected until after repeat statements");
+		AppendTextToEditCtrl(editError, L"Expected until after repeat statements\r\n");
 		break;
 	case 28:
-		print_error("Error: 28 ");
-		print_error("Expected ( after read or write");
+		AppendTextToEditCtrl(editError, L"Expected ( after read or write\r\n");
 		break;
 	default:
-		print_error("Unknown Error");
+		AppendTextToEditCtrl(editError, L"Unknown Error\r\n");
 		break;
 	}
 }

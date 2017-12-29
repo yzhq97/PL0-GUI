@@ -33,24 +33,8 @@ const char * pcode_str[11] = {
 	"INT", "JMP", "JPC", "RED", "WRT"
 };
 
-void AppendTextToEditCtrl(CEdit* edit, LPCTSTR pszText)
-{
-	// get the initial text length
+void AppendTextToEditCtrl(CEdit* edit, LPCTSTR pszText) {
 	int nLength = edit->GetWindowTextLength();
-	// put the selection at the end of text
 	edit->SetSel(nLength, nLength);
-	// replace the selection
 	edit->ReplaceSel(pszText);
-}
-
-void print_error (char * str) {
-	CString errstr;
-	errstr.Format(L"%s\r\n", CString(str));
-	AppendTextToEditCtrl(editError, errstr);
-}
-
-void print_output (char * str) {
-	CString outstr;
-	outstr.Format(L"%s\r\n", CString(str));
-	AppendTextToEditCtrl(editOutput, outstr);
 }
