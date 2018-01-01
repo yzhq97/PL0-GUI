@@ -1,0 +1,5 @@
+var a;
+begin
+	a := 5/0;
+	write(a);
+end.

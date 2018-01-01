@@ -557,91 +557,91 @@ void error(int errcase) {
 	AppendTextToEditCtrl(editError, errstr);
 	switch (errcase) {
 	case 1:
-		AppendTextToEditCtrl(editError, L"Use = instead of :=\r\n");
+		AppendTextToEditCtrl(editError, L"使用=而非:=\r\n");
 		break;
 	case 2:
-		AppendTextToEditCtrl(editError, L"= must be followed by a number\r\n");
+		AppendTextToEditCtrl(editError, L"=后面必须跟数字\r\n");
 		break;
 	case 3:
-		AppendTextToEditCtrl(editError, L"ident must be followed by =\r\n");
+		AppendTextToEditCtrl(editError, L"标识符后面必须跟=\r\n");
 		break;
 	case 4:
-		AppendTextToEditCtrl(editError, L"const, var, procedure must be followed by identifier\r\n");
+		AppendTextToEditCtrl(editError, L"const, var, procedure后面必须跟标识符\r\n");
 		break;
 	case 5:
-		AppendTextToEditCtrl(editError, L"Semicolon or comma missing\r\n");
+		AppendTextToEditCtrl(editError, L"分号或逗号缺失\r\n");
 		break;
 	case 6:
-		AppendTextToEditCtrl(editError, L"Incorrect symbol after procedure declaration\r\n");
+		AppendTextToEditCtrl(editError, L"过程定义后面跟的符号不对\r\n");
 		break;
 	case 7:
-		AppendTextToEditCtrl(editError, L"Statement expected");
+		AppendTextToEditCtrl(editError, L"此处需要语句");
 		break;
 	case 8:
-		AppendTextToEditCtrl(editError, L"Incorrect symbol after statement part in sub_program\r\n");
+		AppendTextToEditCtrl(editError, L"子程序的语句部分后面跟的符号不对\r\n");
 		break;
 	case 9:
-		AppendTextToEditCtrl(editError, L"Period expected\r\n");
+		AppendTextToEditCtrl(editError, L"此处需要句号\r\n");
 		break;
 	case 10:
-		AppendTextToEditCtrl(editError, L"Semicolon between statements missing\r\n");
+		AppendTextToEditCtrl(editError, L"语句间的分号缺失\r\n");
 		break;
 	case 11:
-		AppendTextToEditCtrl(editError, L"Undeclared identifier\r\n");
+		AppendTextToEditCtrl(editError, L"标识符没有定义\r\n");
 		break;
 	case 12:
-		AppendTextToEditCtrl(editError, L"Assignment to constant or procedure is not allowed\r\n");
+		AppendTextToEditCtrl(editError, L"不能对常量或过程赋值\r\n");
 		break;
 	case 13:
-		AppendTextToEditCtrl(editError, L"Assignment operator expected\r\n");
+		AppendTextToEditCtrl(editError, L"此处需要赋值符号\r\n");
 		break;
 	case 14:
-		AppendTextToEditCtrl(editError, L"call must be followed by an identifier");
+		AppendTextToEditCtrl(editError, L"call后面必须跟标识符");
 		break;
 	case 15:
-		AppendTextToEditCtrl(editError, L"Call of a constant or variable is meaningless\r\n");
+		AppendTextToEditCtrl(editError, L"不能调用常量或变量\r\n");
 		break;
 	case 16:
-		AppendTextToEditCtrl(editError, L"then expected");
+		AppendTextToEditCtrl(editError, L"此处需要then");
 		break;
 	case 17:
-		AppendTextToEditCtrl(editError, L"Semicolon or } expected");
+		AppendTextToEditCtrl(editError, L"缺少end");
 		break;
 	case 18:
-		AppendTextToEditCtrl(editError, L"do expected");
+		AppendTextToEditCtrl(editError, L"此处需要do");
 		break;
 	case 19:
-		AppendTextToEditCtrl(editError, L"Incorrect symbol following statement\r\n");
+		AppendTextToEditCtrl(editError, L"语句后跟的符号不对\r\n");
 		break;
 	case 20:
-		AppendTextToEditCtrl(editError, L"Relational operator expected\r\n");
+		AppendTextToEditCtrl(editError, L"此处需要关系运算符\r\n");
 		break;
 	case 21:
-		AppendTextToEditCtrl(editError, L"Expression must not contain a procedure identifier\r\n");
+		AppendTextToEditCtrl(editError, L"表达式里不能出现过程\r\n");
 		break;
 	case 22:
-		AppendTextToEditCtrl(editError, L"Right parenthesis missing\r\n");
+		AppendTextToEditCtrl(editError, L"右括号缺失\r\n");
 		break;
 	case 23:
-		AppendTextToEditCtrl(editError, L"The preceding factor cannot begin with this symbol\r\n");
+		AppendTextToEditCtrl(editError, L"因子不能由这个符号开始\r\n");
 		break;
 	case 24:
-		AppendTextToEditCtrl(editError, L"An expression cannot begin with this symbol\r\n");
+		AppendTextToEditCtrl(editError, L"表达式不能由这个符号开始\r\n");
 		break;
 	case 25:
-		AppendTextToEditCtrl(editError, L"This number is too large\r\n");
+		AppendTextToEditCtrl(editError, L"数字过大\r\n");
 		break;
 	case 26:
-		AppendTextToEditCtrl(editError, L"level is larger than the maximum allowed lexicographical levels\r\n");
+		AppendTextToEditCtrl(editError, L"层次数超过限制\r\n");
 		break;
 	case 27:
-		AppendTextToEditCtrl(editError, L"Expected until after repeat statements\r\n");
+		AppendTextToEditCtrl(editError, L"repeat语句缺少until\r\n");
 		break;
 	case 28:
-		AppendTextToEditCtrl(editError, L"Expected ( after read or write\r\n");
+		AppendTextToEditCtrl(editError, L"read或write的内容需要用括号包住\r\n");
 		break;
 	default:
-		AppendTextToEditCtrl(editError, L"Unknown Error\r\n");
+		AppendTextToEditCtrl(editError, L"未知错误\r\n");
 		break;
 	}
 }

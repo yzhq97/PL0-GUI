@@ -92,7 +92,7 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 		case lit_op: //LIT
 			*sp = *sp + 1;
 			if (*sp >= STACK_SIZE) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Ran out of stack!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: ”√æ°’ªø’º‰\r\n");
 				return -1;
 			}
 			stack[*sp] = instru->a;
@@ -103,7 +103,7 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 		case lod_op: //LOD
 			*sp = *sp + 1;
 			if (*sp >= STACK_SIZE) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Ran out of stack!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: ”√æ°’ªø’º‰\r\n");
 				return -1;
 			}
 			stack[*sp] = stack[base(bp, instru) + instru->a];
@@ -114,7 +114,7 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 			break;
 		case cal_op: //CAL
 			if (*sp+4 >= STACK_SIZE) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Ran out of stack!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: ”√æ°’ªø’º‰\r\n");
 				return -1;
 			}
 			stack[*sp + 1] = 0; //RET
@@ -127,7 +127,7 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 		case int_op: //INT
 			*sp = *sp + instru->a;
 			if (*sp >= STACK_SIZE) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Ran out of stack!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: ”√æ°’ªø’º‰\r\n");
 				return -1;
 			}
 			break;
@@ -142,11 +142,11 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 		case red_op: //RED
 			*sp = *sp + 1;
 			if (*sp >= STACK_SIZE) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Ran out of stack!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: ”√æ°’ªø’º‰\r\n");
 				return -1;
 			}
 			if (fscanf_s(ifp, "%d", &stack[*sp]) == EOF) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Unexpected EOF!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: Unexpected EOF!\r\n");
 				return -1;
 			}
 			break;
@@ -156,7 +156,7 @@ int execute_cycle(aop * instru, int* sp, int* bp, int* pc, FILE * ifp) {
 			*sp = *sp - 1;
 			break;
 		default:
-			AppendTextToEditCtrl(editOutput, L"ERROR: Illegal OPR!\r\n");
+			AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: Illegal OPR!\r\n");
 			return -1;
 			break;
 	}
@@ -188,7 +188,7 @@ int OPR(int *sp, int* bp, int *pc, aop * instru) {
 		case div_op:
 			*sp = *sp - 1;
 			if (stack[*sp + 1] == 0) {
-				AppendTextToEditCtrl(editOutput, L"ERROR: Zero division error!\r\n");
+				AppendTextToEditCtrl(editOutput, L"RUNTIME ERROR: ≥˝¡„¥ÌŒÛ\r\n");
 				return -1;
 			}
 			stack[*sp] = stack[*sp] / stack[*sp + 1];
